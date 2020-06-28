@@ -28,4 +28,15 @@
 
 <%= link_to 'New Sample', new_sample_path %>
 
-<%= javascript_pack_tag 'hello_react' %>
+<div id='example-app'></div>
+<%= content_tag :div,
+                id: "resources-container",
+                data: {
+                    q: params,
+                    resources_path: samples_path,
+                }.to_json do %>
+<% end %>
+
+<% content_for :javascript do %>
+  <%= javascript_pack_tag 'hello_react' %>
+<% end %>

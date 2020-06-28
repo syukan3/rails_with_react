@@ -6,21 +6,30 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
-const Hello = props => (
-  <div>Hello {props.name}!</div>
-)
+class Hello extends React.Component {
+  constructor(props) {
+    super(props)
 
-Hello.defaultProps = {
-  name: 'David'
-}
+    this.state = {
+      q: this.props.q || '',
+      resources_path: this.props.resources_path || '',
+      name: this.props.name || 'David'
+    }
+  }
 
-Hello.propTypes = {
-  name: PropTypes.string
+  render() {
+    return (
+        <div>Hello {this.state.name}!</div>
+    )
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  const node = document.getElementById('resources-container')
+  const data = JSON.parse(node.getAttribute('data'))
+
   ReactDOM.render(
-    <Hello name="React" />,
-    document.body.appendChild(document.createElement('div')),
+    <Hello {...data} name="sakae" />,
+    node
   )
 })
