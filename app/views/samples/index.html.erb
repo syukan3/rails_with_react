@@ -27,12 +27,13 @@
 <br>
 
 <%= link_to 'New Sample', new_sample_path %>
+<br>
+<br>
 
-<div id='example-app'></div>
 <%= content_tag :div,
                 id: "resources-container",
                 data: {
-                    q: params,
+                    params: params,
                     resources_path: samples_path,
                 }.to_json do %>
 <% end %>

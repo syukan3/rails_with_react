@@ -11,15 +11,24 @@ class Hello extends React.Component {
     super(props)
 
     this.state = {
-      q: this.props.q || '',
+      params: this.props.params || '',
       resources_path: this.props.resources_path || '',
       name: this.props.name || 'David'
     }
   }
 
   render() {
+    const setName = e => {
+      this.setState({
+        name: e.target.value
+      })
+    }
+
     return (
-        <div>Hello {this.state.name}!</div>
+        <div>
+          <div>Hello {this.state.name}!</div>
+          <input type="text" defaultValue={this.state.name} onChange={setName}/>
+        </div>
     )
   }
 }
@@ -29,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const data = JSON.parse(node.getAttribute('data'))
 
   ReactDOM.render(
-    <Hello {...data} name="sakae" />,
+    <Hello {...data}/>,
     node
   )
 })
